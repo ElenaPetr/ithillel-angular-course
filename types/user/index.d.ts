@@ -1,5 +1,5 @@
 type IUser = {
-  user: string,
+  readonly user: string,
   readonly active: boolean,
-  age?: number
+  readonly age?: number
 };

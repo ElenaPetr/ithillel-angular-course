@@ -9,6 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   public title: string = 'app';
 
+  public data: { title: string, description: string, logo: string }[] = [
+    { title: 'mytitle', description: 'des', logo: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png' },
+    { title: 'mytitle1', description: 'des', logo: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png' },
+    { title: 'mytitle2', description: 'des', logo: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png' },
+    { title: 'mytitle3', description: 'des', logo: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png' },
+  ]
   public constructor() {
     console.log(environment.color);
   }

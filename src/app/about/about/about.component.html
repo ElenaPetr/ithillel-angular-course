@@ -1,0 +1,20 @@
+<p>
+  about works!
+
+  {{ 1 + 1 }}
+  {{ title }}
+
+  {{ account.name  }} {{ account.surname }}
+
+  <!-- {{ getRandom() }} -->
+
+  <a [href]="link">Link</a>
+  <button [disabled]="disabled" [class]="account.name" [style.width.px]="size" (click)="changeAccount(); sayHello(); changeSmth(myrefer.value)" >Change</button>
+  <input #myrefer [placeholder]="account.name" (input)="myInputEvent($event);" (keyup)="changeAccountSurname($event)">
+  <app-about-info></app-about-info>
+
+
+  <app-card (mousemove)="mouseEvent($event)"></app-card>
+
+
+</p>
