@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IProduct } from '../../interfaces/product.interface';
 
 @Component({
   selector: 'app-card',
@@ -7,6 +8,14 @@ import { Component, Input } from '@angular/core';
 })
 export class CardComponent {
   @Input()
-  public cartData!: { title: string, description: string, logo: string };
+  public product!: IProduct;
 
+  @Input()
+  public index!: number;
+
+  @Input()
+  public isOdd!: boolean;
+
+  @Input()
+  public classValue!: string;
 }

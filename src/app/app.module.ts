@@ -1,3 +1,4 @@
+import { CartModule } from './cart/cart.module';
 import { UiModule } from './ui/ui.module';
 import { AboutModule } from './about/about.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,13 +15,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HeaderCartComponent
+    HeaderCartComponent,
   ],
   imports: [
     BrowserModule,
     AboutModule,
     BrowserAnimationsModule,
-    UiModule
+    UiModule,
+    CartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
