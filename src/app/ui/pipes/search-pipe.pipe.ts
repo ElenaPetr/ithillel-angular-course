@@ -7,8 +7,10 @@ import { IProduct } from '../../interfaces/product.interface';
 export class SearchPipePipe implements PipeTransform {
 
   public transform(products: IProduct[], term: string): IProduct[] {
-    console.log(products);
-    console.log(term)
+    if (!products) {
+      return [];
+    }
+
     if (!term) {
       return products;
     }

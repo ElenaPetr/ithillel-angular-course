@@ -1,5 +1,5 @@
+import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
-import { UiModule } from './ui/ui.module';
 import { AboutModule } from './about/about.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,8 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AboutModule,
     BrowserAnimationsModule,
-    UiModule,
     CartModule,
+    ProductsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

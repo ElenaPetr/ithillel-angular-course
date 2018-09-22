@@ -4,3 +4,28 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+
+.wrapper {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cart-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.card {
+  background: yellow;
+}
+
+.uniq-card {
+  background: green;
+}
+
+.example-card {
+  width: 300px
+}

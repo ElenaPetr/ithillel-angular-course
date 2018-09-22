@@ -6,12 +6,13 @@ import { CardComponent } from './card/card.component';
 import { SearchPipePipe } from './pipes/search-pipe.pipe';
 import { AlphabeticPipePipe } from './pipes/alphabetic-pipe.pipe';
 import { AclDirective } from './directives/acl.directive';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   imports: [
     CommonModule,
     MatCardModule,
     MatButtonModule,
+    MatPaginatorModule,
   ],
   declarations: [CardComponent, SearchPipePipe, AlphabeticPipePipe, AclDirective],
   exports: [
@@ -20,7 +21,8 @@ import { AclDirective } from './directives/acl.directive';
     CardComponent,
     SearchPipePipe,
     AlphabeticPipePipe,
-    AclDirective
+    AclDirective,
+    MatPaginatorModule
   ]
 })
 export class UiModule { }

@@ -1,0 +1,14 @@
+<input type="text" #box (keyup)="onKey(box.value)">
+<button *ngIf="sort" (click)="chageSortStrategy()">^</button>
+<button *ngIf="!sort" (click)="chageSortStrategy()">*</button>
+ <div>Ammount of products {{productsLength$ | async }}</div>
+<div class="wrapper">
+  <div *ngFor="let product of products$ | async | searchPipe: box.value | alphabeticPipe: sort; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd">
+    <app-card [isOdd]="isOdd" [product]="product" [index]="i" (onBuy)="addToCart($event)"></app-card>
+  </div>
+</div>
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[1, 2, 5, 10, 25, 100]"
+              (page)="changePage($event)">
+</mat-paginator>

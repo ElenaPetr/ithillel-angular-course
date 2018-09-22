@@ -1,40 +1,6 @@
 <app-header></app-header>
-<!-- <app-about></app-about> -->
-
-
-<!-- <button (click)="swithloading()">Click</button>
-<div *ngIf="isLoading; else myelseBlock;">Loading...</div>
-<ng-template #myelseBlock>
-  <div *ngFor="let item of [1, 2, 3]">
-    {{ item }}
-  </div>
-</ng-template> -->
-
-
-<!-- <div [ngSwitch]="value">
-  <div *ngSwitchCase="'1'">1dsfsdfsd</div>
-  <div *ngSwitchCase="'2'">22222</div>
-  <div *ngSwitchCase="'3'">3</div>
-
-</div> -->
-<!-- {{date | date: 'MMMM:HH'}} -->
-
-<!-- <div *ngFor="let item of account | keyvalue">
-  {{ item.key }}
-  {{ item.value }}
-
-</div> -->
-
-<input type="text" #box (keyup)="onKey(box.value)">
-<button *ngIf="sort" (click)="chageSortStrategy()">^</button>
-<button *ngIf="!sort" (click)="chageSortStrategy()">*</button>
-
-<div class="wrapper">
-  <div *ngFor="let product of products$ | async | searchPipe: box.value | alphabeticPipe: sort; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd">
-    <app-card [isOdd]="isOdd" [product]="product" [index]="i"></app-card>
-  </div>
-</div>
 <div class="cart-wrapper">
-  <app-cart [cart]="cart"></app-cart>
+  <app-products></app-products>
+  <app-cart></app-cart>
 </div>
 
