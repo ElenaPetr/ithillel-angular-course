@@ -1,0 +1,63 @@
+<div>
+  contacts works!
+
+  <input [formControl]="searchControl" [type]="isActive ? 'password' : 'text'">
+  <span (click)="switchPassword()" >show password</span>
+  <div *ngIf="searchControl.invalid">Input is invalid</div>
+
+  <div *ngIf="searchControl.errors && searchControl.errors.minlength">minlength</div>
+  <div *ngIf="searchControl.errors && searchControl.errors.required">minlength</div>
+  <div *ngIf="searchControl.errors && searchControl.errors.maxlength">emaxlength</div>
+
+  <button [disabled]="searchControl.invalid">Submit</button>
+
+
+
+  <div> ------------- </div>
+
+  <div [formGroup]="contactUsFrom">
+    <input type="text" formControlName="name" placeholder="name">
+    <input type="text" formControlName="surname" placeholder="surname">
+    <input type="text" formControlName="email" placeholder="email">
+
+    <input type="text" formControlName="password" placeholder="password">
+    <input type="text" formControlName="confirmPassword" placeholder="confirmPassword">
+
+
+    <!-- <div formControlname="pollingForm" *ngFor="let item of contactUsFrom.get('pollingForm').controls; let i = index;">
+        <input type="text" formControlName="item">
+      </div> -->
+  
+    <button [disabled]="contactUsFrom.invalid">Submit</button>
+  </div>
+
+
+
+  <form [formGroup]="contactUs" (ngSubmit)="submit($event)">
+    <input type="text" formControlName="name" placeholder="name">
+
+    <input type="text" formControlName="password" placeholder="password">
+    <input type="text" formControlName="confirmPassword" placeholder="confirmPassword">
+
+    <input type="checkbox" formControlName="isUserActive">
+    <select formControlName="type">
+      <option *ngFor="let item of types" [ngValue]="item" >{{item.displayname}}</option>
+    </select>
+    <!-- <div formControlname="pollingForm" *ngFor="let item of contactUs.get('pollingForm').controls; let i = index;">
+        <input type="text" [formControlName]="i">
+      </div> -->
+  
+    <button (click)="submit(contactUs.value)" [disabled]="contactUs.invalid">Submit</button>
+  </form>
+
+
+  <span (click)="addQuestion()">Add Questing</span>
+  <div [formGroup]="questions" *ngFor="let question of questions.controls; let i = index;">
+    <div [formGroupName]="i">
+      <input formControlName="name"  placeholder="Type Question Here">
+      <button (click)="removeQuestion(i)">X</button>
+    </div>
+
+  </div>
+
+</div>

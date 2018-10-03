@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { ProductsModule } from './products/products.module';
 import { CartModule } from './cart/cart.module';
 import { AboutModule } from './about/about.module';
@@ -9,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderCartComponent } from './header/header-cart/header-cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactsModule } from './contacts/contacts.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AboutModule,
     BrowserAnimationsModule,
     CartModule,
-    ProductsModule
+    ProductsModule,
+    ContactsModule
   ],
-  providers: [],
+  providers: [{ provide: 'API', useValue: environment.api }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
