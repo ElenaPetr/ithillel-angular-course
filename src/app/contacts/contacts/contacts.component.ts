@@ -1,6 +1,7 @@
+/* ts:disable */
 import { PasswordValidators } from './../../shared/validators/password-match.validator';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -88,8 +89,7 @@ export class ContactsComponent implements OnInit {
     });
   }
 
-  public submit(value) {
-    console.log(this.contactUs.value, value)
+  public submit(): void {
     this.contactUs.reset();
     this.contactUs.markAsUntouched();
 
@@ -101,7 +101,7 @@ export class ContactsComponent implements OnInit {
     this.questions.push(this.createQuestion())
   }
 
-  public removeQuestion(index) {
+  public removeQuestion(index: number): void {
     if (this.questions.length === 1) {
       return;
     }
