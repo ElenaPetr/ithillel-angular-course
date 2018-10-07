@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 export class PasswordValidators {
   public static checkPasswordMatch(form: any): any  {
