@@ -2,7 +2,20 @@
 <div class="cart-wrapper">
     <!-- <app-contacts></app-contacts> -->
   <!-- <app-contacts></app-contacts> -->
-  <app-products></app-products>
-  <app-cart></app-cart>
+  <!-- <app-products></app-products>
+  <app-cart></app-cart> -->
+
+  <div>
+    <button [routerLink]="['']" routerLinkActive="myactive">Product</button>
+    <button [routerLink]="['cart']"  routerLinkActive="myactive">Cart</button>
+  </div>
+
+  <div>
+    <button *ngFor="let item of routes" [routerLink]="[item.path]" routerLinkActive="item.class">{{item.title}}</button>
+  </div>
+
+  <button (click)="navigate()">Navigate  </button>
+  
+  <router-outlet></router-outlet>
 </div>
 

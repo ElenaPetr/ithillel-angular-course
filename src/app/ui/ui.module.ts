@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -22,7 +23,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     SearchPipePipe,
     AlphabeticPipePipe,
     AclDirective,
-    MatPaginatorModule
+    MatPaginatorModule,
+    RouterModule,
   ]
 })
 export class UiModule { }

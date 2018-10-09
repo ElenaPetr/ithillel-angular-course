@@ -1,6 +1,6 @@
 import { PageEvent } from '@angular/material/paginator';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -10,7 +10,6 @@ import { catchError } from 'rxjs/operators';
 export class ProductsService {
   public constructor(
     private _http: HttpClient,
-    @Inject('API') private _env: any,
   ) { }
 
 
@@ -26,7 +25,7 @@ export class ProductsService {
       _page: String(event.pageIndex)
     } });
 
-    return this._http.get<IProduct[]>(`${this._env.api}/products`, { headers, params }).pipe(
+    return this._http.get<IProduct[]>(`${environment.api}/products`, { headers, params }).pipe(
       catchError((error: Error) => {
         console.log(error);
         // show popu
@@ -37,6 +36,10 @@ export class ProductsService {
 
   public addProduct(product: IProduct): Observable<IProduct> {
     return this._http.post<IProduct>(`${environment.api}/products`, product);
+  }
+
+  public getProduct(id: string): Observable<IProduct> {
+    return this._http.get<IProduct>(`${environment.api}/products/${id}`);
   }
 
   public updateProduct(product: IProduct): Observable<IProduct> {

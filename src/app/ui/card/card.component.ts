@@ -22,7 +22,8 @@ export class CardComponent {
   @Output()
   public onBuy: EventEmitter<IProduct> = new EventEmitter();
 
-  public buy(product: IProduct): void {
+  public buy(event: any, product: IProduct): void {
+    event.stopPropagation(); 
     this.onBuy.emit(product);
   }
 }

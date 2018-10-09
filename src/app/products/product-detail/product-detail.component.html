@@ -1,0 +1,15 @@
+<div>
+  product-detail works!
+  
+
+  <pre>
+    {{product$ | async | json}}
+  </pre>
+
+  <div>
+    <button [routerLink]="['feedbacks']">Feedback</button>
+    <button [routerLink]="['raiting']">raiting</button>
+
+  </div>
+  <router-outlet></router-outlet>
+</div>
