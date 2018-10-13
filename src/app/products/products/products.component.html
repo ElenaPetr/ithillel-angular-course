@@ -1,9 +1,13 @@
-{{data.title}}
 <input type="text" #box (keyup)="onKey(box.value)">
 <button *ngIf="sort" (click)="chageSortStrategy()">^</button>
 <button *ngIf="!sort" (click)="chageSortStrategy()">*</button>
  <div>Ammount of products {{productsLength$ | async }}</div>
 <div class="wrapper">
+
+  <div *ngIf="isLoading$ | async">
+    Loading..
+  </div>
+
   <div *ngFor="let product of products$ | async | searchPipe: box.value | alphabeticPipe: sort; index as i; first as isFirst; last as isLast; even as isEven; odd as isOdd">
     <app-card [routerLink]="[product.id]" [isOdd]="isOdd" [product]="product" [index]="i" (onBuy)="addToCart($event)"></app-card>
   </div>

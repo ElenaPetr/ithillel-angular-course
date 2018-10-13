@@ -1,11 +1,13 @@
+import { AddToCart } from './../../cart/state/actions/cart.actions';
+import { IRootState } from './../../reducers/index';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { CartService } from './../../cart/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../interfaces/product.interface';
-import { ProductsService } from '../products.service';
 import { Observable } from 'rxjs';
-// import { map } from 'rxjs/operators';
 import { PageEvent } from '@angular/material/paginator';
+import { Store } from '@ngrx/store';
+import { LoadProductss } from '../state/actions/products.actions';
+
 
 @Component({
   selector: 'app-products',
@@ -13,42 +15,36 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  public isLoading$!: Observable<boolean>;
   public sort: boolean = false;
   public products$!: Observable<IProduct[]>;
   public productsLength$!: Observable<number>;
-  public data: any;
-  pageSize = 10;
+  public pageSize: number = 10;
 
   public constructor(
-    private _productService: ProductsService,
-    private _cartService: CartService,
+    private _store: Store<IRootState>,
     private _route: ActivatedRoute,
     private _router: Router,
   ) { }
 
   public ngOnInit(): void {
-    this._route.data.subscribe((data: any) =>{
-      this.data = data;
-    })
-
+    this.isLoading$ = this._store.select('products', 'isLoading');
+    this.products$ = this._store.select('products', 'data');
 
     this._route.queryParams.subscribe((data: Params) => {
       const { pageIndex = 1, pageSize = 10 } = data;
       this.pageSize = pageSize;
       this.getProducts({ pageIndex,  pageSize } as any);
-    })
+    });
 
-    // this.productsLength$ = this._productService.getProducts().pipe(
-    //   map((products: IProduct[]) => products.length)
-    // );
   }
 
   public getProducts(options: PageEvent): void {
-    this.products$ = this._productService.getProducts(options);
+    this._store.dispatch(new LoadProductss(options));
   }
 
   public addToCart(product: IProduct): void {
-    this._cartService.addToCart(product);
+    this._store.dispatch(new AddToCart(product));
   }
 
   public onKey(_value: string): void {

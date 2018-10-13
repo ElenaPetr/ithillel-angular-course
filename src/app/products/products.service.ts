@@ -14,7 +14,8 @@ export class ProductsService {
 
 
   public getProducts(event: PageEvent): Observable<IProduct[]> {
-
+    console.log(event);
+    
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type':  'application/json',
       'Authorization': 'my-auth-token'

@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
+import { totalSumSelector } from './../cart/state/selectors/total-sum.selector';
+import { Store } from '@ngrx/store';
+import { Component, OnInit } from '@angular/core';
+import { IRootState } from '../reducers';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  public totalSum$!: Observable<number>;
   public mycounter: number = 0;
 
-  public headerData: any = { title: 'test', description: 'tes', logo: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png'}
+  public constructor(
+    private _store: Store<IRootState>,
+  ) { }
+
+  public ngOnInit(): void {
+      this.totalSum$ = this._store.select(totalSumSelector);
+    }
 
   // public increase(): void {
   //   this.mycounter++;
@@ -19,8 +30,6 @@ export class HeaderComponent {
   // }
 
   public changeCounterValue(value: number): void {
-    console.log(value)
-
     this.mycounter = value;
   }
 }

@@ -14,8 +14,8 @@ export class AuthGuard implements CanActivate {
     console.log(state);
 
     
-    return of(false).pipe(
-      delay(3000)
+    return of(true).pipe(
+      delay(0)
     );
     // return true;
   }

@@ -140,5 +140,8 @@
       }
     }
   },
-  "defaultProject": "ithillel"
+  "defaultProject": "ithillel",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

@@ -1,3 +1,4 @@
+import { EffectsModule } from '@ngrx/effects';
 import { ChildGuard } from './../shared/services/child.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsService } from './products.service';
@@ -9,12 +10,14 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { RouterModule } from '@angular/router';
 import { FeedbacksComponent } from './product-detail/feedbacks/feedbacks.component';
 import { RaitingComponent } from './product-detail/raiting/raiting.component';
+import { ProductsEffects } from './state/effects/products.effects';
 
 @NgModule({
   imports: [
     CommonModule,
     UiModule,
     HttpClientModule,
+    EffectsModule.forFeature([ProductsEffects]),
     RouterModule.forChild([
       { path: '', component: ProductsComponent },
       {

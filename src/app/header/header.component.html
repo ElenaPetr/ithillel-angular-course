@@ -1,5 +1,8 @@
 <p>
   header works!
+
+
+  TOTAL SUM <span>{{totalSum$ | async}}</span>
   <app-header-cart 
     [counter]="mycounter"
     (updateCounterValue)="changeCounterValue($event)"

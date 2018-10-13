@@ -1,6 +1,8 @@
-import { CartService } from './../cart.service';
+import { RemoveFromCart } from './../state/actions/cart.actions';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ICart } from '../../interfaces/cart.interface';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-cart',
@@ -8,17 +10,17 @@ import { ICart } from '../../interfaces/cart.interface';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  public cart: ICart[] = [];
+  public cart$!: Observable<ICart[]>;
 
   public constructor(
-    private _cartService: CartService
+    private _store: Store<any>,
   ) {}
 
   public ngOnInit(): void {
-    this.cart = this._cartService.getCart();
+    this.cart$ = this._store.select('cart');
   }
 
   public removeItem(id: number): void {
-    this._cartService.deleteFromCart(id);
+    this._store.dispatch(new RemoveFromCart(id));
   }
 }
