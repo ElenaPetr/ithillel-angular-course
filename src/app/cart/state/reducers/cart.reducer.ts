@@ -1,33 +1,39 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 import { CartActionTypes } from './../actions/cart.actions';
 import { ICart } from './../../../interfaces/cart.interface';
-import { IProduct } from 'src/app/interfaces/product.interface';
 
-export const initialState: ICart[] = [];
+export const cartAdapter: EntityAdapter<ICart> = createEntityAdapter<ICart>();
+export interface IState extends EntityState<ICart> { }
 
-export function reducer(state: ICart[] = initialState, action: any): ICart[] {
+export const initialState: IState = cartAdapter.getInitialState();
+
+export function reducer(state: IState = initialState, action: any): IState {
   switch (action.type) {
 
     case CartActionTypes.AddToCart: {
-      const newState: ICart[] = state.slice();
-      const product: IProduct = action.payload;
-
-      const index: number = newState.findIndex((item: ICart) => item.id === product.id);
-
-      if (index === -1) {
-        return [...newState, {...action.payload, amount: 1}];
+      const item: ICart = state.entities[action.payload.id];
+      if (!item) {
+        return cartAdapter.upsertOne({...action.payload, amount: 1}, state);
       }
-
-
-      const element: ICart = newState[index];
-      newState.splice(index, 1, {...element, amount: element.amount + 1});
-      return newState;
+      return cartAdapter.upsertOne({...action.payload, amount: item.amount + 1}, state);
     }
 
     case CartActionTypes.RemoveFromCart: {
-      return state.filter(( {id }: ICart) => id !== action.payload);
+      return cartAdapter.removeOne(action.id, state);
     }
 
     default:
       return state;
   }
 }
+
+
+export const getCartState: MemoizedSelector<object, IState> = createFeatureSelector<IState>('cart');
+
+export const {
+    selectIds,
+    selectEntities,
+    selectAll,
+    selectTotal,
+  } = cartAdapter.getSelectors(getCartState);

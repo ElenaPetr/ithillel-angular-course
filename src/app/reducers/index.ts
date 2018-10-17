@@ -3,12 +3,12 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import * as fromProducts from '../products/state/reducers/products.reducer'
-import * as fromCart from '../cart/state/reducers/cart.reducer'
+import * as fromProducts from '../products/state/reducers/products.reducer';
+import * as fromCart from '../cart/state/reducers/cart.reducer';
 
 export interface IRootState {
   products: fromProducts.State;
-  cart: any;
+  cart: fromCart.IState;
 }
 
 export const reducers: ActionReducerMap<IRootState> = {
