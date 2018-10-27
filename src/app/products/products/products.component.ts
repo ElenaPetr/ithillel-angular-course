@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
 import { LoadProductss } from '../state/actions/products.actions';
+import { getProducts } from '../state/selectors/product.selector';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class ProductsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.isLoading$ = this._store.select('products', 'isLoading');
-    this.products$ = this._store.select('products', 'data');
+    this.products$ = this._store.select(getProducts);
 
     this._route.queryParams.subscribe((data: Params) => {
       const { pageIndex = 1, pageSize = 10 } = data;

@@ -14,5 +14,6 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="buy($event, product)">BUY</button>
+    <button mat-button *ngIf="product.inCart">Added to Cart</button>
   </mat-card-actions>
 </mat-card>

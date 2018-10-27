@@ -5,4 +5,5 @@ export interface IProduct {
   photo: string;
   price: number;
   type: string;
+  inCart?: boolean;
 }
