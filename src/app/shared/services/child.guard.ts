@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivateChild } from '@angular/router';
+import { CanLoad } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChildGuard implements CanActivateChild {
-  canActivateChild(): Observable<boolean> | Promise<boolean> | boolean {
+export class ChildGuard implements CanLoad {
+  public canLoad(): Observable<boolean> | Promise<boolean> | boolean {
     return false;
   }
 }

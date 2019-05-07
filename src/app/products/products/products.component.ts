@@ -29,6 +29,10 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    // this._store.select('products', 'isLoading').subscribe((isLoading) => {
+    //   console.log(isLoading);
+      
+    // })
     this.isLoading$ = this._store.select('products', 'isLoading');
     this.products$ = this._store.select(getProducts);
 

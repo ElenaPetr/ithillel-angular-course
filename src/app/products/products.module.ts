@@ -8,7 +8,6 @@ import { ProductsComponent } from './products/products.component';
 import { UiModule } from '../ui/ui.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { RouterModule } from '@angular/router';
-import { FeedbacksComponent } from './product-detail/feedbacks/feedbacks.component';
 import { RaitingComponent } from './product-detail/raiting/raiting.component';
 import { ProductsEffects } from './state/effects/products.effects';
 
@@ -21,15 +20,18 @@ import { ProductsEffects } from './state/effects/products.effects';
     RouterModule.forChild([
       { path: '', component: ProductsComponent },
       {
-        path: ':productId', component: ProductDetailComponent, canActivateChild: [ChildGuard], children: [
-          // { path: '', redirectTo: 'feedbacks' },
-          { path: 'feedbacks', component: FeedbacksComponent },
+        path: ':productId', component: ProductDetailComponent, children: [
+          { 
+            path: 'feedbacks', 
+            canLoad: [ChildGuard], 
+            loadChildren: './product-detail/feedbacks/feedbacks.module#FeedbacksModule' 
+          },
           { path: 'raiting', component: RaitingComponent }
         ]
       },
     ])
   ],
-  declarations: [ProductsComponent, ProductDetailComponent, FeedbacksComponent, RaitingComponent],
+  declarations: [ProductsComponent, ProductDetailComponent, RaitingComponent],
   providers: [ProductsService],
 })
 export class ProductsModule { }
